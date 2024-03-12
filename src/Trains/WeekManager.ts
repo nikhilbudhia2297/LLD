@@ -1,4 +1,3 @@
-import {_DAY_MS} from "../../constants/AppConstant";
 import {FareCap} from "./trainConstants";
 
 export class WeekManager{
@@ -41,7 +40,7 @@ export class WeekManager{
         }
 
         let firstTimestamp = currQueue[0].valueOf();
-        while(firstTimestamp && currTime.valueOf() - firstTimestamp > 7 * _DAY_MS){
+        while(firstTimestamp && currTime.valueOf() - firstTimestamp > 7 * 1){
             currCharge -= currQueue[0].charge;
             currQueue.shift();
             firstTimestamp = currQueue.length ? currQueue[0] : null;
@@ -62,7 +61,7 @@ export class WeekManager{
 
         const firstTimestamp = currQueue[0].time.valueOf(); // time in MS
 
-        if(currTimeStamp.valueOf() - firstTimestamp < 7 * _DAY_MS){
+        if(currTimeStamp.valueOf() - firstTimestamp < 7 * 1){
             if(currCharge >= FareCap.getCap(from, to)){
                 return 0;
             }else if(currCharge + charge >= FareCap.getCap(from, to)){
