@@ -1,22 +1,17 @@
 import {Vehicle} from "../vehicle/Vehicle";
 import {VehicleType} from "../vehicle/VehicleType";
-import {TariffType} from "./TariffType";
 import {ParkingSpotId} from "./ParkingSpotId";
 
 export abstract class ParkingSpot{
     private readonly id : number;
+    private readonly parkingType : VehicleType;
     private isAvailable : boolean;
     private vehicle : Vehicle | null;
-    private readonly parkingType : VehicleType;
-    private readonly tariffType : TariffType;
-    private tariff : number
 
-    protected constructor(parkingType : VehicleType, tariffType : TariffType, tariff : number) {
+    protected constructor(parkingType : VehicleType) {
         this.id = ParkingSpotId.getParkingSpotId();
         this.isAvailable = true;
         this.parkingType = parkingType;
-        this.tariffType = tariffType;
-        this.tariff = tariff;
     }
 
     getId(){
@@ -35,16 +30,6 @@ export abstract class ParkingSpot{
         return this.parkingType;
     }
 
-    getBillAmount(time : number){ // in seconds
-        switch (this.tariffType){
-            case TariffType.HOURLY:
-                return this.tariff * Math.ceil(time/3600);
-            case TariffType.PER_MINUTE :
-                return this.tariff * Math.ceil(time/60);
-            default : throw new Error('INVALID');
-        }
-    }
-
     setVehicle(vehicle : Vehicle){
         this.vehicle = vehicle;
         this.isAvailable = false;
@@ -53,10 +38,6 @@ export abstract class ParkingSpot{
     removeVehicle(){
         this.vehicle = null;
         this.isAvailable = true;
-    }
-
-    updateTariff(newTariff : number){
-        this.tariff = newTariff;
     }
 
 }
