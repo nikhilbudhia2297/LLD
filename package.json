@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run:server:": "tsc -p . && nodemon ",
+    "run:server:": "tsc -p . && nodemon src/snake_n_ladder/SnLMain.ts",
     "build": "rimraf ./dist && tsc -p ."
   },
   "repository": {
@@ -22,6 +22,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "express": "^4.18.3",
+    "nodemon": "^3.1.0",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "tsc-watch": "^4.2.9",
