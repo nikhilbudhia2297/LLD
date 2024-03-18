@@ -28,6 +28,7 @@ export class Consumer implements IConsumer{
     }
 
     startConsuming(): void {
+        /// todo : event emitter
         while (true){
             for(let topic of this.subscribedTopics){
                 const currentOffset = this.topicToOffsetMap.get(topic)!;
